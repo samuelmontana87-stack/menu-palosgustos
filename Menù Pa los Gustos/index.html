@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pa' Los Gustos - Menú Digital</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --accent-color: #ff3838;
+            --yellow-neon: #ffcc00;
+            --text-color: #ffffff;
+            --text-muted: #b3b3b3;
+            --whatsapp-green: #25d366;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding-bottom: 100px;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 15px;
+            background: linear-gradient(180deg, #1a0505 0%, var(--bg-color) 100%);
+        }
+
+        h1 {
+            font-size: 26px;
+            color: var(--yellow-neon);
+            text-shadow: 0 0 8px rgba(255, 204, 0, 0.5);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .delivery-info {
+            background-color: rgba(255, 56, 56, 0.15);
+            border: 1px solid var(--accent-color);
+            color: #ff8080;
+            text-align: center;
+            padding: 10px;
+            margin: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .category-nav {
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 10px 15px;
+            position: sticky;
+            top: 0;
+            background-color: var(--bg-color);
+            z-index: 10;
+            border-bottom: 1px solid #2a2a2a;
+            scrollbar-width: none;
+        }
+
+        .category-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category-tab {
+            padding: 8px 16px;
+            margin-right: 10px;
+            background-color: #222;
+            border-radius: 20px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid #333;
+            transition: all 0.3s;
+        }
+
+        .category-tab:active, .category-tab.active {
+            background-color: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        .container {
+            padding: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            color: var(--yellow-neon);
+            font-size: 20px;
+            text-transform: uppercase;
+            margin: 25px 0 15px 0;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .category-desc {
+            font-size: 12px;
+            color: #ffa502;
+            margin-top: -10px;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border: 1px solid #2a2a2a;
+        }
+        
+       .product-card img {
+            width: 100%;
+            height: auto;          /* Permite que la altura se adapte a la foto */
+            max-height: 400px;     /* Evita que en PC se vaya al diablo el tamaño */
+            object-fit: contain;   /* Fuerza a que la imagen se muestre COMPLETA sin recortar nada */
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background-color: #121212; /* Fondo oscuro por si la imagen es más angosta */
+    
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 6px;
+        }
+
+        .product-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.4;
+            margin-bottom: 15px;
+        }
+
+        .options-container {
+            background: #181818;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .option-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            border-bottom: 1px solid #282828;
+        }
+
+        .option-row:last-child {
+            border-bottom: none;
+        }
+
+        .option-label {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .option-price {
+            color: var(--yellow-neon);
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 14px;
+        }
+
+        .combo-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 204, 0, 0.08);
+            border: 1px dashed rgba(255, 204, 0, 0.3);
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+
+        .combo-label {
+            color: #ffe066;
+            font-weight: 500;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .btn-qty {
+            background-color: #333;
+            color: white;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-qty:active {
+            background-color: var(--accent-color);
+        }
+
+        .qty-value {
+            width: 30px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .item-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .single-price {
+            color: var(--yellow-neon);
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .checkout-section {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 30px;
+            border: 1px solid #2a2a2a;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+
+        .input-text, .select-input {
+            width: 100%;
+            padding: 12px;
+            background-color: #121212;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .input-text:focus, .select-input:focus {
+            border-color: var(--accent-color);
+        }
+
+        .radio-tile-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .radio-tile {
+            flex: 1;
+            background-color: #121212;
+            border: 1px solid #333;
+            padding: 12px;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .radio-tile span {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .radio-tile.selected {
+            border-color: var(--accent-color);
+            background-color: rgba(255, 56, 56, 0.1);
+        }
+
+        .radio-tile.selected span {
+            color: white;
+        }
+
+        .payment-info {
+            background-color: #181818;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 15px;
+            border-left: 3px solid #00d2d3;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .payment-info b {
+            color: #00d2d3;
+        }
+
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #1e1e1e;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.5);
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            max-width: 600px;
+            margin: 0 auto;
+            border-top: 1px solid #2a2a2a;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .total-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .total-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .total-amount {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--yellow-neon);
+        }
+
+        .btn-order {
+            background-color: var(--whatsapp-green);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 15px;
+            color: #444;
+            font-size: 12px;
+            border-top: 1px solid #1a1a1a;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+         <!-- Aquí agregamos tu logo -->
+   <img src="logo.png" alt="Logo Pa' los Gustos" style="width: 130px; height: 130px; object-fit: cover; border-radius: 50%; display: block; margin: 0 auto 15px auto; box-shadow: 0 0 15px rgba(255, 56, 56, 0.4); border: 2px solid #ff3838;">
+        
+    
+    </header>
+
+    <div class="delivery-info">
+        🛵 COSTO DEL DELIVERY: $2.000 (DEPENDIENDO LA ZONA, CONSULTAR)
+    </div>
+
+    <div class="category-nav">
+        <a href="#burgers" class="category-tab active" id="tab-burgers">Burgers</a>
+        <a href="#lomos" class="category-tab" id="tab-lomos">Lomos</a>
+        <a href="#pachatas" class="category-tab" id="tab-pachatas">Pachatas</a>
+        <a href="#papas" class="category-tab" id="tab-papas">Papas</a>
+    </div>
+
+    <div class="container">
+
+        <div id="burgers">
+            <h2 class="section-title">🍔 Burgers</h2>
+            <p class="category-desc">Pan de papa con parmesano de 15cm en todas las variedades. Envoltorio térmico.</p>
+
+            <div class="product-card">
+                <img src="golden.png" alt="Hamburguesa Golden" style="width: 100%; border-radius: 8px; margin-bottom: 10px;">
+                <div class="product-name">Golden</div>
+                <p class="product-desc">Pan de Papa + Barbacoa + Medallón de Carne + Doble Cheddar + Doble Panceta.</p>
+                <div class="options-container">
+                    <div class="option-row">
+                        <span class="option-label">Simple</span>
+                        <div>
+                            <span class="option-price">$4.900</span>
+                            <span class="quantity-controls" style="display:inline-flex;">
+                                <button class="btn-qty" onclick="changeQty('bg-gold-s', -1, 4900, 'Golden Simple')">-</button>
+                                <span class="qty-value" id="bg-gold-s">0</span>
+                                <button class="btn-qty" onclick="changeQty('bg-gold-s', 1, 4900, 'Golden Simple')">+</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="option-row">
+                        <span class="option-label">Doble</span>
+                        <div>
+                            <span class="option-price">$6.400</span>
+                            <span class="quantity-controls" style="display:inline-flex;">
+                                <button class="btn-qty" onclick="changeQty('bg-gold-d', -1, 6400, 'Golden Doble')">-</button>
+                                <span class="qty-value" id="bg-gold-d">0</span>
+                                <button class="btn-qty" onclick="changeQty('bg-gold-d', 1, 6400, 'Golden Doble')">+</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="option-row">
+                        <span class="option-label">Triple</span>
+                        <div>
+                            <span class="option-price">$7.900</span>
+                            <span class="quantity-controls" style="display:inline-flex;">
+                                <button class="btn-qty" onclick="changeQty('bg-gold-t', -1, 7900, 'Golden Triple')">-</button>
+                                <span class="qty-value" id="bg-gold-t">0</span>
+                                <button class="btn-qty" onclick="changeQty('bg-gold-t', 1, 7900, 'Golden Triple')">+</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="clasica.png" alt="Hamburguesa Clasica" style="width: 100%; border-radius: 8px; margin-bottom: 10px;">
+                <div class="product-name">Clásica</div>
+                <p class="product-desc">Pan de Papa + Mayo + Medallón de Carne + Queso + Tomate + Lechuga + Ketchup.</p>
+                <div class="options-container">
+                    <div class="option-row">
+                        <span class="option-label">Simple</span>
+                        <div>
+                            <span class="option-price">$4.300</span>
+                            <span class="quantity-controls" style="display:inline-flex;">
+                                <button class="btn-qty" onclick="changeQty('bg-clas-s', -1, 4300, 'Clásica Simple')">-</button>
+                                <span class="qty-value" id="bg-clas-s">0</span>
+                                <button class="btn-qty" onclick="changeQty('bg-clas-s', 1, 4300, 'Clásica Simple')">+</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="option-row">
+                        <span class="option-label">Doble</span>
+                        <div>
+                            <span class="option-price">$5.300</span>
+                            <span class="quantity-controls" style="display:inline-flex;">
+                                <button class="btn-qty" onclick="changeQty('bg-clas-d', -1, 5300, 'Clásica Doble')">-</button>
+                                <span class="qty-value" id="bg-clas-d">0</span>
+                                <button class="btn-qty" onclick="changeQty('bg-clas-d', 1, 5300, 'Clásica Doble')">+</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="option-row">
+                        <span class="option-label">Triple</span>
+                        <div>
+                            <span class="option-price">$7.200</span>
+                            <span class="quantity-controls" style="display:inline-flex;">
+                                <button class="btn-qty" onclick="changeQty('bg-clas-t', -1, 7200, 'Clásica Triple')">-</button>
+                                <span class="qty-value" id="bg-clas-t">0</span>
+                                <button class="btn-qty" onclick="changeQty('bg-clas-t', 1, 7200, 'Clásica Triple')">+</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="gloo.png" alt="Hamburguesa Gloo" style="width: 100%; border-radius: 8px; margin-bottom: 10px;">
+                <div class="product-name">Gloo</div>
+                <p class="product-desc">Pan de Papa + Mayo + Carne + Queso + Jamón + Huevo + Tomate + Lechuga + Ketchup.</p>
+                <div class="options-container">
+                    <div class="option-row">
+                        <span class="option-label">Simple</span>
+                        <div>
+                            <span class="option-price">$4.700</span>
+                            <span class="quantity-controls" style="display:inline-flex;">
+                                <button class="btn-qty" onclick="changeQty('bg-gloo-s', -1, 4700, 'Gloo Simple')">-</button>
+                                <span class="qty-value" id="bg-gloo-s">0</span>
+                                <button class="btn-qty" onclick="changeQty('bg-gloo-s', 1, 4700, 'Gloo Simple')">+</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="option-row">
+                        <span class="option-label">Doble</span>
+                        <div>
+                            <span class="option-price">$6.200</span>
+                            <span class="quantity-controls" style="display:inline-flex;">
+                                <button class="btn-qty" onclick="changeQty('bg-gloo-d', -1, 6200, 'Gloo Doble')">-</button>
+                                <span class="qty-value" id="bg-gloo-d">0</span>
+                                <button class="btn-qty" onclick="changeQty('bg-gloo-d', 1, 6200, 'Gloo Doble')">+</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="option-row">
+                        <span class="option-label">Triple</span>
+                        <div>
+                            <span class="option-price">$7.700</span>
+                            <span class="quantity-controls" style="display:inline-flex;">
+                                <button class="btn-qty" onclick="changeQty('bg-gloo-t', -1, 7700, 'Gloo Triple')">-</button>
+                                <span class="qty-value" id="bg-gloo-t">0</span>
+                                <button class="btn-qty" onclick="changeQty('bg-gloo-t', 1, 7700, 'Gloo Triple')">+</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="gusto.png" alt="Hamburguesa Gusto" style="width: 100%; border-radius: 8px; margin-bottom: 10px;">
+                <div class="product-name">Gusto</div>
+                <p class="product-desc">Pan de Papa + Mayo + Carne + Cheddar + Panceta + Cebolla Caramelizada + Tomate + Lechuga.</p>
+                <div class="options-container">
+                    <div class="option-row">
+                        <span class="option-label">Simple</span>
+                        <div>
+                            <span class="option-price">$4.800</span>
+                            <span class="quantity-controls" style="display:inline-flex;">
+                                <button class="btn-qty" onclick="changeQty('bg-gust-s', -1, 4800, 'Gusto Simple')">-</button>
+                                <span class="qty-value" id="bg-gust-s">0</span>
+                                <button class="btn-qty" onclick="changeQty('bg-gust-s', 1, 4800, 'Gusto Simple')">+</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="option-row">
+                        <span class="option-label">Doble</span>
+                        <div>
+                            <span class="option-price">$6.300</span>
+                            <span class="quantity-controls" style="display:inline-flex;">
+                                <button class="btn-qty" onclick="changeQty('bg-gust-d', -1, 6300, 'Gusto Doble')">-</button>
+                                <span class="qty-value" id="bg-gust-d">0</span>
+                                <button class="btn-qty" onclick="changeQty('bg-gust-d', 1, 6300, 'Gusto Doble')">+</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="option-row">
+                        <span class="option-label">Triple</span>
+                        <div>
+                            <span class="option-price">$7.800</span>
+                            <span class="quantity-controls" style="display:inline-flex;">
+                                <button class="btn-qty" onclick="changeQty('bg-gust-t', -1, 7800, 'Gusto Triple')">-</button>
+                                <span class="qty-value" id="bg-gust-t">0</span>
+                                <button class="btn-qty" onclick="changeQty('bg-gust-t', 1, 7800, 'Gusto Triple')">+</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="lomos">
+            <h2 class="section-title">🥪 Lomos</h2>
+            <p class="category-desc">Pan artesanal de 20cm aprox. Envoltorio térmico.</p>
+
+            <div class="product-card">
+                <img src="lomo_especial.png" alt="Lomo Especial" style="width: 100%; border-radius: 8px; margin-bottom: 10px;">
+                <div class="product-name">Lomo Especial Solo</div>
+                <p class="product-desc">Pan de 20cm + Lechuga + Tomate + 200g Carne + Queso + Jamón + Huevo + Mayo.</p>
+                <div class="item-footer">
+                    <span class="single-price">$9.000</span>
+                    <span class="quantity-controls">
+                        <button class="btn-qty" onclick="changeQty('lm-esp-s', -1, 9000, 'Lomo Especial Solo')">-</button>
+                        <span class="qty-value" id="lm-esp-s">0</span>
+                        <button class="btn-qty" onclick="changeQty('lm-esp-s', 1, 9000, 'Lomo Especial Solo')">+</button>
+                    </span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-name">Lomo Especial Combo</div>
+                <p class="product-desc">Pan de 20cm + Lechuga + Tomate + 200g Carne + Queso + Jamón + Huevo + Mayo.</p>
+                <div class="combo-box"><span class="combo-label">🍟 Incluye Papas Fritas y Dip de Ajo</span></div>
+                <div class="item-footer">
+                    <span class="single-price">$10.000</span>
+                    <span class="quantity-controls">
+                        <button class="btn-qty" onclick="changeQty('lm-esp-c', -1, 10000, 'Lomo Especial Combo')">-</button>
+                        <span class="qty-value" id="lm-esp-c">0</span>
+                        <button class="btn-qty" onclick="changeQty('lm-esp-c', 1, 10000, 'Lomo Especial Combo')">+</button>
+                    </span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="lomo_americano.png" alt="Lomo Americano" style="width: 100%; border-radius: 8px; margin-bottom: 10px;">
+                <div class="product-name">Lomo Americano Solo</div>
+                <p class="product-desc">Pan de 20cm + Barbacoa + 200g Carne + Cheddar + Panceta + Huevo.</p>
+                <div class="item-footer">
+                    <span class="single-price">$10.000</span>
+                    <span class="quantity-controls">
+                        <button class="btn-qty" onclick="changeQty('lm-ame-s', -1, 10000, 'Lomo Americano Solo')">-</button>
+                        <span class="qty-value" id="lm-ame-s">0</span>
+                        <button class="btn-qty" onclick="changeQty('lm-ame-s', 1, 10000, 'Lomo Americano Solo')">+</button>
+                    </span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-name">Lomo Americano Combo</div>
+                <p class="product-desc">Pan de 20cm + Barbacoa + 200g Carne + Cheddar + Panceta + Huevo.</p>
+                <div class="combo-box"><span class="combo-label">🍟 Incluye Papas Fritas y Dip de Ajo</span></div>
+                <div class="item-footer">
+                    <span class="single-price">$11.000</span>
+                    <span class="quantity-controls">
+                        <button class="btn-qty" onclick="changeQty('lm-ame-c', -1, 11000, 'Lomo Americano Combo')">-</button>
+                        <span class="qty-value" id="lm-ame-c">0</span>
+                        <button class="btn-qty" onclick="changeQty('lm-ame-c', 1, 11000, 'Lomo Americano Combo')">+</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div id="pachatas">
+            <h2 class="section-title">🌯 Pachatas</h2>
+            <p class="category-desc">Pan de Papa con Parmesano de 30 centímetros. Envoltorio térmico.</p>
+
+            <div class="product-card">
+                <img src="pachata_especial.png" alt="Pachata Especial" style="width: 100%; border-radius: 8px; margin-bottom: 10px;">
+                <div class="product-name">Pachata Especial Sola</div>
+                <p class="product-desc">Pan de Papa (30cm) + Lechuga + Tomate + 250g Carne + Queso + Jamón + Huevo + Mayo.</p>
+                <div class="item-footer">
+                    <span class="single-price">$11.000</span>
+                    <span class="quantity-controls">
+                        <button class="btn-qty" onclick="changeQty('pa-esp-s', -1, 11000, 'Pachata Especial Sola')">-</button>
+                        <span class="qty-value" id="pa-esp-s">0</span>
+                        <button class="btn-qty" onclick="changeQty('pa-esp-s', 1, 11000, 'Pachata Especial Sola')">+</button>
+                    </span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-name">Pachata Especial Combo</div>
+                <p class="product-desc">Pan de Papa (30cm) + Lechuga + Tomate + 250g Carne + Queso + Jamón + Huevo + Mayo.</p>
+                <div class="combo-box"><span class="combo-label">🍟 Incluye Papas Fritas y Dip de Ajo</span></div>
+                <div class="item-footer">
+                    <span class="single-price">$12.000</span>
+                    <span class="quantity-controls">
+                        <button class="btn-qty" onclick="changeQty('pa-esp-c', -1, 12000, 'Pachata Especial Combo')">-</button>
+                        <span class="qty-value" id="pa-esp-c">0</span>
+                        <button class="btn-qty" onclick="changeQty('pa-esp-c', 1, 12000, 'Pachata Especial Combo')">+</button>
+                    </span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="pachata_americana.png" alt="Pachata Americana" style="width: 100%; border-radius: 8px; margin-bottom: 10px;">
+                <div class="product-name">Pachata Americana Sola</div>
+                <p class="product-desc">Pan de Papa (30cm) + Barbacoa + 250g Carne + Cheddar + Panceta + Huevo.</p>
+                <div class="item-footer">
+                    <span class="single-price">$12.000</span>
+                    <span class="quantity-controls">
+                        <button class="btn-qty" onclick="changeQty('pa-ame-s', -1, 12000, 'Pachata Americana Sola')">-</button>
+                        <span class="qty-value" id="pa-ame-s">0</span>
+                        <button class="btn-qty" onclick="changeQty('pa-ame-s', 1, 12000, 'Pachata Americana Sola')">+</button>
+                    </span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-name">Pachata Americana Combo</div>
+                <p class="product-desc">Pan de Papa (30cm) + Barbacoa + 250g Carne + Cheddar + Panceta + Huevo.</p>
+                <div class="combo-box"><span class="combo-label">🍟 Incluye Papas Fritas y Dip de Ajo</span></div>
+                <div class="item-footer">
+                    <span class="single-price">$13.000</span>
+                    <span class="quantity-controls">
+                        <button class="btn-qty" onclick="changeQty('pa-ame-c', -1, 13000, 'Pachata Americana Combo')">-</button>
+                        <span class="qty-value" id="pa-ame-c">0</span>
+                        <button class="btn-qty" onclick="changeQty('pa-ame-c', 1, 13000, 'Pachata Americana Combo')">+</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div id="papas">
+            <h2 class="section-title">🍟 Papas</h2>
+            <p class="category-desc">Ideales para acompañar o compartir.</p>
+
+            <div class="product-card">
+                <div class="product-name">Porción de Papas</div>
+                <p class="product-desc">Porción individual, incluye Dip de Mayo de Ajo.</p>
+                <div class="item-footer">
+                    <span class="single-price">$1.500</span>
+                    <span class="quantity-controls">
+                        <button class="btn-qty" onclick="changeQty('pt-porc', -1, 1500, 'Porción de Papas')">-</button>
+                        <span class="qty-value" id="pt-porc">0</span>
+                        <button class="btn-qty" onclick="changeQty('pt-porc', 1, 1500, 'Porción de Papas')">+</button>
+                    </span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="papas_caja.png" alt="Caja de Papas" style="width: 100%; border-radius: 8px; margin-bottom: 10px;">
+                <div class="product-name">Caja de Papas</div>
+                <p class="product-desc">Caja grande ideal para compartir, incluye Dip de Mayo de Ajo.</p>
+                <div class="item-footer">
+                    <span class="single-price">$4.500</span>
+                    <span class="quantity-controls">
+                        <button class="btn-qty" onclick="changeQty('pt-caja', -1, 4500, 'Caja de Papas')">-</button>
+                        <span class="qty-value" id="pt-caja">0</span>
+                        <button class="btn-qty" onclick="changeQty('pt-caja', 1, 4500, 'Caja de Papas')">+</button>
+                    </span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-name">Dip de Mayo de Ajo (Extra)</div>
+                <p class="product-desc">Salsa artesanal extra para sumarle más sabor.</p>
+                <div class="item-footer">
+                    <span class="single-price">$700</span>
+                    <span class="quantity-controls">
+                        <button class="btn-qty" onclick="changeQty('pt-dip', -1, 700, 'Dip de Mayo de Ajo Extra')">-</button>
+                        <span class="qty-value" id="pt-dip">0</span>
+                        <button class="btn-qty" onclick="changeQty('pt-dip', 1, 700, 'Dip de Mayo de Ajo Extra')">+</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="checkout-section">
+            <h2 style="color: white; font-size: 18px; margin-bottom: 15px; text-transform: uppercase;">📝 Datos de Entrega</h2>
+            
+            <div class="form-group">
+                <label>Nombre y Apellido:</label>
+                <input type="text" id="cust-name" class="input-text" placeholder="Ej: Juan Pérez">
+            </div>
+
+            <div class="form-group">
+                <label>Forma de Entrega:</label>
+                <div class="radio-tile-group">
+                    <div class="radio-tile selected" id="tile-delivery" onclick="setDeliveryType('Envío a domicilio')">
+                        <span>🚚 Envío ($2.000)</span>
+                    </div>
+                    <div class="radio-tile" id="tile-pickup" onclick="setDeliveryType('Retiro por el local')">
+                        <span>🏪 Retiro Local</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" id="address-container">
+                <label>Dirección (y enviar ubicaciòn actual):</label>
+                <input type="text" id="cust-address" class="input-text" placeholder="Ej: Av. Rioja 450 Norte">
+            </div>
+
+            <div class="form-group">
+                <label>Forma de Pago:</label>
+                <select id="cust-payment" class="select-input">
+                    <option value="Transferencia / MP">Transferencia / MP</option>
+                    <option value="Efectivo">Efectivo</option>
+                </select>
+            </div>
+            <div class="form-group" id="cash-container" style="display: none;">
+                <label>¿Con cuánto abonás? (Ej: Justo / Pago con $10.000):</label>
+                <input type="text" id="cust-cash-detail" class="input-text" placeholder="Ej: Pago con $10.000 / Justo">
+            </div>
+            <div class="form-group">
+                <label>Aclaraciones especiales:</label>
+                <input type="text" id="cust-notes" class="input-text" placeholder="Ej: Sin cebolla / Enviar cambio de $10.000">
+            </div>
+
+            <div class="payment-info">
+                🏦 <b>Datos de la Cuenta para Transferencias:</b><br>
+                Alias: <b>palosgustos.mp</b><br>
+                Titular: <b>Leonardo Samuel Montaña Maya</b>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="bottom-bar">
+        <div class="total-container">
+            <span class="total-label">Tu Pedido</span>
+            <span class="total-amount" id="total-price">$0</span>
+        </div>
+        <button class="btn-order" onclick="sendOrder()">
+            Enviar por WhatsApp
+        </button>
+    </div>
+
+    <footer>
+        © 2026 Pa´ los Gustos<br>
+        Pedidos Directos por WhatsApp
+    </footer>
+
+  <script>
+    let cart = {};
+    let totalAmount = 0;
+    let deliveryType = "Envío a domicilio"; // Texto unificado
+    const deliveryCost = 2000;
+
+    function changeQty(id, delta, price, name) {
+        if (!cart[id]) {
+            cart[id] = { quantity: 0, price: price, name: name };
+        }
+        cart[id].quantity += delta;
+        if (cart[id].quantity <= 0) {
+            delete cart[id];
+            document.getElementById(id).innerText = 0;
+        } else {
+            document.getElementById(id).innerText = cart[id].quantity;
+        }
+        calculateTotal();
+    }
+
+    function setDeliveryType(type) {
+        // Mostrar u ocultar campo de efectivo según la selección
+        window.addEventListener('DOMContentLoaded', () => {
+            const paymentSelect = document.getElementById('cust-payment');
+            paymentSelect.addEventListener('change', () => {
+                if (paymentSelect.value === 'Efectivo') {
+                    document.getElementById('cash-container').style.display = 'block';
+                } else {
+                    document.getElementById('cash-container').style.display = 'none';
+                    document.getElementById('cust-cash-detail').value = ''; // Limpia si cambia de opinión
+                }
+            });
+        });
+        deliveryType = type; // Recibe "Envío a domicilio" o "Retiro por el local"
+        document.getElementById('tile-delivery').classList.remove('selected');
+        document.getElementById('tile-pickup').classList.remove('selected');
+
+        if (type === 'Envío a domicilio') {
+            document.getElementById('tile-delivery').classList.add('selected');
+            document.getElementById('address-container').style.display = 'block';
+        } else {
+            document.getElementById('tile-pickup').classList.add('selected');
+            document.getElementById('address-container').style.display = 'none';
+        }
+        calculateTotal();
+    }
+
+    function calculateTotal() {
+        let subtotal = 0;
+        for (const key in cart) {
+            subtotal += cart[key].price * cart[key].quantity;
+        }
+        
+        // Corrección de la lógica de suma
+        if (deliveryType === 'Envío a domicilio' && subtotal > 0) {
+            totalAmount = subtotal + deliveryCost;
+        } else {
+            totalAmount = subtotal;
+        }
+        document.getElementById('total-price').innerText = '$' + totalAmount.toLocaleString('es-AR');
+    }
+
+    // Resaltar categorías al hacer scroll
+    window.addEventListener('scroll', () => {
+        const sections = ['burgers', 'lomos', 'pachatas', 'papas'];
+        sections.forEach(sec => {
+            const el = document.getElementById(sec);
+            if (el) {
+                const rect = el.getBoundingClientRect();
+                if(rect.top >= -50 && rect.top <= 300) {
+                    document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+                    document.getElementById('tab-' + sec).classList.add('active');
+                }
+            }
+        });
+    });
+
+    // Permitir activar la pestaña visual también al hacer click directo
+    document.querySelectorAll('.category-tab').forEach(tab => {
+        tab.addEventListener('click', (e) => {
+            document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+            e.target.classList.add('active');
+        });
+    });
+
+    function sendOrder() {
+        let itemLines = "";
+        let itemCount = 0;
+        let subtotal = 0;
+
+        for (const key in cart) {
+            const item = cart[key];
+            itemLines += `- ${item.quantity}x ${item.name} ($${(item.price * item.quantity).toLocaleString('es-AR')})\n`;
+            itemCount += item.quantity;
+            subtotal += item.price * item.quantity;
+        }
+
+        if (itemCount === 0) {
+            alert("Por favor, agregá al menos un producto a tu carrito.");
+            return;
+        }
+
+        const name = document.getElementById('cust-name').value.trim();
+        const address = document.getElementById('cust-address').value.trim();
+        const payment = document.getElementById('cust-payment').value;
+        const notes = document.getElementById('cust-notes').value.trim();
+        const cashDetail = document.getElementById('cust-cash-detail').value.trim(); // NUEVA LÍNEA
+        if (!name) {
+            alert("Por favor, ingresá tu nombre.");
+            return;
+        }
+        if (deliveryType === 'Envío a domicilio' && !address) {
+            alert("Por favor, ingresá tu dirección.");
+            return;
+        }
+
+        let message = `*NUEVO PEDIDO - PA' LOS GUSTOS*\n\n`;
+        message += `👤 *Cliente:* ${name}\n`;
+        message += `🛵 *Entrega:* ${deliveryType}\n`;
+        
+        // CORREGIDO: Ahora sí entra acá porque coincide el texto
+        if (deliveryType === 'Envío a domicilio') {
+            message += `📍 *Dirección:* ${address}\n`;
+        }
+        message += `💳 *Pago:* ${payment}\n`;
+        if (notes) {
+        if (payment === 'Efectivo' && cashDetail) {
+            message += `💵 *Abona con:* ${cashDetail}\n`;
+        }    
+        message += `📝 *Notas:* ${notes}\n`;
+        }
+        message += `\n🛒 *Detalle:*\n${itemLines}\n`;
+        
+        if (deliveryType === 'Envío a domicilio') {
+            message += `Subtotal: $${subtotal.toLocaleString('es-AR')}\n`;
+            message += `Delivery: $${deliveryCost.toLocaleString('es-AR')}\n`;
+        }
+        message += `💰 *TOTAL: $${totalAmount.toLocaleString('es-AR')}*\n\n`;
+        
+        if (payment.includes("Transferencia")) {
+            message += `⚠️ _Recordá enviar el comprobante de transferencia._\n`;
+        }
+
+        const phoneNumber = "5492644710376"; 
+        window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+    }
+</script>
