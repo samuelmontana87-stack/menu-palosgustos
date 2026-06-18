@@ -828,18 +828,7 @@
     }
 
     function setDeliveryType(type) {
-        // Mostrar u ocultar campo de efectivo según la selección
-        window.addEventListener('DOMContentLoaded', () => {
-            const paymentSelect = document.getElementById('cust-payment');
-            paymentSelect.addEventListener('change', () => {
-                if (paymentSelect.value === 'Efectivo') {
-                    document.getElementById('cash-container').style.display = 'block';
-                } else {
-                    document.getElementById('cash-container').style.display = 'none';
-                    document.getElementById('cust-cash-detail').value = ''; // Limpia si cambia de opinión
-                }
-            });
-        });
+                
         deliveryType = type; // Recibe "Envío a domicilio" o "Retiro por el local"
         document.getElementById('tile-delivery').classList.remove('selected');
         document.getElementById('tile-pickup').classList.remove('selected');
@@ -953,4 +942,20 @@
         const phoneNumber = "5492644710376"; 
         window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
     }
+// Lógica para mostrar/ocultar el campo de efectivo (Suelto al final)
+document.addEventListener('DOMContentLoaded', () => {
+    const paymentSelect = document.getElementById('cust-payment');
+    const cashContainer = document.getElementById('cash-container');
+    
+    if (paymentSelect && cashContainer) {
+        paymentSelect.addEventListener('change', () => {
+            if (paymentSelect.value === 'Efectivo') {
+                cashContainer.style.display = 'block';
+            } else {
+                cashContainer.style.display = 'none';
+                document.getElementById('cust-cash-detail').value = '';
+            }
+        });
+    }
+});
 </script>
