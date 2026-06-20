@@ -803,7 +803,7 @@
     </div>
 
     <footer>
-        © 2026 Pa´ los Gustos<br>
+        ©️ 2026 Pa´ los Gustos<br>
         Pedidos Directos por WhatsApp
     </footer>
 
@@ -902,7 +902,8 @@
         const address = document.getElementById('cust-address').value.trim();
         const payment = document.getElementById('cust-payment').value;
         const notes = document.getElementById('cust-notes').value.trim();
-        const cashDetail = document.getElementById('cust-cash-detail').value.trim(); // NUEVA LÍNEA
+        const cashDetail = document.getElementById('cust-cash-detail').value.trim();
+        
         if (!name) {
             alert("Por favor, ingresá tu nombre.");
             return;
@@ -916,17 +917,20 @@
         message += `👤 *Cliente:* ${name}\n`;
         message += `🛵 *Entrega:* ${deliveryType}\n`;
         
-        // CORREGIDO: Ahora sí entra acá porque coincide el texto
         if (deliveryType === 'Envío a domicilio') {
             message += `📍 *Dirección:* ${address}\n`;
         }
         message += `💳 *Pago:* ${payment}\n`;
-        if (notes) {
+        
         if (payment === 'Efectivo' && cashDetail) {
             message += `💵 *Abona con:* ${cashDetail}\n`;
         }    
-        message += `📝 *ATENCION NOTAS:*🚨‼️🚨‼️ *${notes}\n`*🚨‼️🚨‼️;
+        
+        // MODIFICADO: Bloque de observaciones ultra llamativo y en mayúsculas
+        if (notes) {
+            message += `\n🚨 *¡ATENCIÓN! OBSERVACIONES:* 🚨\n➔ *${notes.toUpperCase()}*\n`;
         }
+        
         message += `\n🛒 *Detalle:*\n${itemLines}\n`;
         
         if (deliveryType === 'Envío a domicilio') {
@@ -935,14 +939,18 @@
         }
         message += `💰 *TOTAL: $${totalAmount.toLocaleString('es-AR')}*\n\n`;
         
+        // MODIFICADO: Bloque exclusivo para resaltar alias y titular si eligen transferencia
         if (payment.includes("Transferencia")) {
+            message += `🏦 *DATOS PARA TRANSFERENCIA:*\n`;
+            message += `• Alias: *palosgustos.mp*\n`;
+            message += `• Titular: *Leonardo Samuel Montaña Maya*\n\n`;
             message += `⚠️ _Recordá enviar el comprobante de transferencia._\n`;
         }
 
         const phoneNumber = "5492644710376"; 
         window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
     }
-// Lógica para mostrar/ocultar el campo de efectivo (Suelto al final)
+
 document.addEventListener('DOMContentLoaded', () => {
     const paymentSelect = document.getElementById('cust-payment');
     const cashContainer = document.getElementById('cash-container');
@@ -959,3 +967,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 </script>
+</body>
+</html>
