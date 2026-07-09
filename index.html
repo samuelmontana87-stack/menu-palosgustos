@@ -388,8 +388,6 @@
     <header>
          <!-- Aquí agregamos tu logo -->
    <img src="logo.png" alt="Logo Pa' los Gustos" style="width: 130px; height: 130px; object-fit: cover; border-radius: 50%; display: block; margin: 0 auto 15px auto; box-shadow: 0 0 15px rgba(255, 56, 56, 0.4); border: 2px solid #ff3838;">
-        
-    
     </header>
 
     <div class="delivery-info">
@@ -398,7 +396,6 @@
 
     <div class="category-nav">
         <a href="#burgers" class="category-tab active" id="tab-burgers">Burgers</a>
-        <a href="#lomos" class="category-tab" id="tab-lomos">Lomos</a>
         <a href="#pachatas" class="category-tab" id="tab-pachatas">Pachatas</a>
         <a href="#papas" class="category-tab" id="tab-papas">Papas</a>
     </div>
@@ -570,67 +567,6 @@
                             </span>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="lomos">
-            <h2 class="section-title">🥪 Lomos</h2>
-            <p class="category-desc">Pan artesanal de 20cm aprox. Envoltorio térmico.</p>
-
-            <div class="product-card">
-                <img src="lomo_especial.png" alt="Lomo Especial" style="width: 100%; border-radius: 8px; margin-bottom: 10px;">
-                <div class="product-name">Lomo Especial Solo</div>
-                <p class="product-desc">Pan de 20cm + Lechuga + Tomate + 200g Carne + Queso + Jamón + Huevo + Mayo.</p>
-                <div class="item-footer">
-                    <span class="single-price">$9.000</span>
-                    <span class="quantity-controls">
-                        <button class="btn-qty" onclick="changeQty('lm-esp-s', -1, 9000, 'Lomo Especial Solo')">-</button>
-                        <span class="qty-value" id="lm-esp-s">0</span>
-                        <button class="btn-qty" onclick="changeQty('lm-esp-s', 1, 9000, 'Lomo Especial Solo')">+</button>
-                    </span>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-name">Lomo Especial Combo</div>
-                <p class="product-desc">Pan de 20cm + Lechuga + Tomate + 200g Carne + Queso + Jamón + Huevo + Mayo.</p>
-                <div class="combo-box"><span class="combo-label">🍟 Incluye Papas Fritas y Dip de Ajo</span></div>
-                <div class="item-footer">
-                    <span class="single-price">$10.000</span>
-                    <span class="quantity-controls">
-                        <button class="btn-qty" onclick="changeQty('lm-esp-c', -1, 10000, 'Lomo Especial Combo')">-</button>
-                        <span class="qty-value" id="lm-esp-c">0</span>
-                        <button class="btn-qty" onclick="changeQty('lm-esp-c', 1, 10000, 'Lomo Especial Combo')">+</button>
-                    </span>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="lomo_americano.png" alt="Lomo Americano" style="width: 100%; border-radius: 8px; margin-bottom: 10px;">
-                <div class="product-name">Lomo Americano Solo</div>
-                <p class="product-desc">Pan de 20cm + Barbacoa + 200g Carne + Cheddar + Panceta + Huevo.</p>
-                <div class="item-footer">
-                    <span class="single-price">$10.000</span>
-                    <span class="quantity-controls">
-                        <button class="btn-qty" onclick="changeQty('lm-ame-s', -1, 10000, 'Lomo Americano Solo')">-</button>
-                        <span class="qty-value" id="lm-ame-s">0</span>
-                        <button class="btn-qty" onclick="changeQty('lm-ame-s', 1, 10000, 'Lomo Americano Solo')">+</button>
-                    </span>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-name">Lomo Americano Combo</div>
-                <p class="product-desc">Pan de 20cm + Barbacoa + 200g Carne + Cheddar + Panceta + Huevo.</p>
-                <div class="combo-box"><span class="combo-label">🍟 Incluye Papas Fritas y Dip de Ajo</span></div>
-                <div class="item-footer">
-                    <span class="single-price">$11.000</span>
-                    <span class="quantity-controls">
-                        <button class="btn-qty" onclick="changeQty('lm-ame-c', -1, 11000, 'Lomo Americano Combo')">-</button>
-                        <span class="qty-value" id="lm-ame-c">0</span>
-                        <button class="btn-qty" onclick="changeQty('lm-ame-c', 1, 11000, 'Lomo Americano Combo')">+</button>
-                    </span>
                 </div>
             </div>
         </div>
@@ -857,7 +793,8 @@
     }
 
     window.addEventListener('scroll', () => {
-        const sections = ['burgers', 'lomos', 'pachatas', 'papas'];
+        // MODIFICADO: Lista de secciones actualizada sin lomos
+        const sections = ['burgers', 'pachatas', 'papas'];
         sections.forEach(sec => {
             const el = document.getElementById(sec);
             if (el) {
@@ -922,7 +859,6 @@
             message += `💵 *Abona con:* ${cashDetail}\n`;
         }    
         
-        // MODIFICADO: Bloque de observaciones ultra llamativo con más emojis de alerta
         if (notes) {
             message += `\n🚨🚨🚨 *¡ATENCIÓN COCINA!* 🚨🚨🚨\n`;
             message += `⚠️⚠️ *OBSERVACIÓN DE PRODUCTO:* ⚠️⚠️\n`;
