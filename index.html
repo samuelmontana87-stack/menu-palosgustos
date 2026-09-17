@@ -391,7 +391,7 @@
     </header>
 
     <div class="delivery-info">
-        🛵 COSTO DEL DELIVERY: $2.000 (DEPENDIENDO LA ZONA, CONSULTAR)
+        🛵 COSTO DEL DELIVERY: $2.500 (DEPENDIENDO LA ZONA, CONSULTAR)
     </div>
 
     <div class="category-nav">
@@ -455,11 +455,11 @@
                     <div class="option-row">
                         <span class="option-label">Simple</span>
                         <div>
-                            <span class="option-price">$4.700</span>
+                            <span class="option-price">$4.800</span>
                             <span class="quantity-controls" style="display:inline-flex;">
-                                <button class="btn-qty" onclick="changeQty('bg-clas-s', -1, 4700, 'Clásica Simple')">-</button>
+                                <button class="btn-qty" onclick="changeQty('bg-clas-s', -1, 4800, 'Clásica Simple')">-</button>
                                 <span class="qty-value" id="bg-clas-s">0</span>
-                                <button class="btn-qty" onclick="changeQty('bg-clas-s', 1, 4700, 'Clásica Simple')">+</button>
+                                <button class="btn-qty" onclick="changeQty('bg-clas-s', 1, 4800, 'Clásica Simple')">+</button>
                             </span>
                         </div>
                     </div>
@@ -747,7 +747,7 @@
     let cart = {};
     let totalAmount = 0;
     let deliveryType = "Retiro por el local"; 
-    const deliveryCost = 2000;
+    const deliveryCost = 2500;
 
     function changeQty(id, delta, price, name) {
         if (!cart[id]) {
