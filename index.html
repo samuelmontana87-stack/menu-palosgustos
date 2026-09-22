@@ -531,7 +531,7 @@
             <div class="product-card">
                 <img src="gusto.png" alt="Hamburguesa Gusto" style="width: 100%; border-radius: 8px; margin-bottom: 10px;">
                 <div class="product-name">Gusto</div>
-                <p class="product-desc">Pan de Papa + Mayo +  Medallón de Carne de 180g + Cheddar + Panceta + Cebolla Caramelizada.</p>
+                <p class="product-desc">Pan de Papa + Mayo +  Medallón de Carne de 180g + Cheddar + Panceta + Cebolla Caramelizada + ketchup.</p>
                 <div class="options-container">
                     <div class="option-row">
                         <span class="option-label">Simple</span>
@@ -571,8 +571,49 @@
         </div>
 
        
-
-        <div id="papas">
+   <div class="product-card">
+                <img src="cheeseburger.png" alt="Hamburguesa Cheese Burger" style="width: 100%; border-radius: 8px; margin-bottom: 10px;">
+                <div class="product-name">Cheese Burger</div>
+                <p class="product-desc">Pan de Papa + Mayo +  Medallón de Carne de 180g + Cheddar + ketchup.</p>
+                <div class="options-container">
+                    <div class="option-row">
+                        <span class="option-label">Simple</span>
+                        <div>
+                            <span class="option-price">$4.900</span>
+                            <span class="quantity-controls" style="display:inline-flex;">
+                                <button class="btn-qty" onclick="changeQty('bg-gust-s', -1, 4900, 'Cheese Burger Simple')">-</button>
+                                <span class="qty-value" id="bg-gust-s">0</span>
+                                <button class="btn-qty" onclick="changeQty('bg-gust-s', 1, 4900, 'Cheese Burger Simple')">+</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="option-row">
+                        <span class="option-label">Doble</span>
+                        <div>
+                            <span class="option-price">$6.000</span>
+                            <span class="quantity-controls" style="display:inline-flex;">
+                                <button class="btn-qty" onclick="changeQty('bg-gust-d', -1, 6000, 'Cheese Burger Doble')">-</button>
+                                <span class="qty-value" id="bg-gust-d">0</span>
+                                <button class="btn-qty" onclick="changeQty('bg-gust-d', 1, 6000, 'Cheese Burger Doble')">+</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="option-row">
+                        <span class="option-label">Triple</span>
+                        <div>
+                            <span class="option-price">$8.000</span>
+                            <span class="quantity-controls" style="display:inline-flex;">
+                                <button class="btn-qty" onclick="changeQty('bg-gust-t', -1, 8000, 'Cheese Burger Triple')">-</button>
+                                <span class="qty-value" id="bg-gust-t">0</span>
+                                <button class="btn-qty" onclick="changeQty('bg-gust-t', 1, 8000, 'Cheese Burger Triple')">+</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      
+       
+       <div id="papas">
             <h2 class="section-title">🍟 Papas</h2>
             <p class="category-desc">Ideales para acompañar o compartir.</p>
 
