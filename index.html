@@ -130,7 +130,7 @@
             border: 1px solid #2a2a2a;
         }
         
-       .product-card img {
+        .product-card img {
             width: 100%;
             height: auto;
             max-height: 400px;
@@ -183,23 +183,6 @@
             font-weight: bold;
             margin-right: 15px;
             font-size: 14px;
-        }
-
-        .combo-box {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: rgba(255, 204, 0, 0.08);
-            border: 1px dashed rgba(255, 204, 0, 0.3);
-            padding: 8px 12px;
-            border-radius: 8px;
-            margin-top: 10px;
-            font-size: 13px;
-        }
-
-        .combo-label {
-            color: #ffe066;
-            font-weight: 500;
         }
 
         .quantity-controls {
@@ -386,8 +369,7 @@
 <body>
 
     <header>
-         <!-- Aquí agregamos tu logo -->
-   <img src="logo.png" alt="Logo Pa' los Gustos" style="width: 130px; height: 130px; object-fit: cover; border-radius: 50%; display: block; margin: 0 auto 15px auto; box-shadow: 0 0 15px rgba(255, 56, 56, 0.4); border: 2px solid #ff3838;">
+        <img src="logo.png" alt="Logo Pa' los Gustos" style="width: 130px; height: 130px; object-fit: cover; border-radius: 50%; display: block; margin: 0 auto 15px auto; box-shadow: 0 0 15px rgba(255, 56, 56, 0.4); border: 2px solid #ff3838;">
     </header>
 
     <div class="delivery-info">
@@ -531,7 +513,7 @@
             <div class="product-card">
                 <img src="gusto.png" alt="Hamburguesa Gusto" style="width: 100%; border-radius: 8px; margin-bottom: 10px;">
                 <div class="product-name">Gusto</div>
-                <p class="product-desc">Pan de Papa + Mayo +  Medallón de Carne de 180g + Cheddar + Panceta + Cebolla Caramelizada + ketchup.</p>
+                <p class="product-desc">Pan de Papa + Mayo + Medallón de Carne de 180g + Cheddar + Panceta + Cebolla Caramelizada + ketchup.</p>
                 <div class="options-container">
                     <div class="option-row">
                         <span class="option-label">Simple</span>
@@ -568,22 +550,20 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-       
-   <div class="product-card">
+            <div class="product-card">
                 <img src="cheeseburger.png" alt="Hamburguesa Cheese Burger" style="width: 100%; border-radius: 8px; margin-bottom: 10px;">
                 <div class="product-name">Cheese Burger</div>
-                <p class="product-desc">Pan de Papa + Mayo +  Medallón de Carne de 180g + Cheddar + ketchup.</p>
+                <p class="product-desc">Pan de Papa + Mayo + Medallón de Carne de 180g + Cheddar + ketchup.</p>
                 <div class="options-container">
                     <div class="option-row">
                         <span class="option-label">Simple</span>
                         <div>
                             <span class="option-price">$4.900</span>
                             <span class="quantity-controls" style="display:inline-flex;">
-                                <button class="btn-qty" onclick="changeQty('bg-gust-s', -1, 4900, 'Cheese Burger Simple')">-</button>
-                                <span class="qty-value" id="bg-gust-s">0</span>
-                                <button class="btn-qty" onclick="changeQty('bg-gust-s', 1, 4900, 'Cheese Burger Simple')">+</button>
+                                <button class="btn-qty" onclick="changeQty('bg-cheese-s', -1, 4900, 'Cheese Burger Simple')">-</button>
+                                <span class="qty-value" id="bg-cheese-s">0</span>
+                                <button class="btn-qty" onclick="changeQty('bg-cheese-s', 1, 4900, 'Cheese Burger Simple')">+</button>
                             </span>
                         </div>
                     </div>
@@ -592,9 +572,9 @@
                         <div>
                             <span class="option-price">$6.000</span>
                             <span class="quantity-controls" style="display:inline-flex;">
-                                <button class="btn-qty" onclick="changeQty('bg-gust-d', -1, 6000, 'Cheese Burger Doble')">-</button>
-                                <span class="qty-value" id="bg-gust-d">0</span>
-                                <button class="btn-qty" onclick="changeQty('bg-gust-d', 1, 6000, 'Cheese Burger Doble')">+</button>
+                                <button class="btn-qty" onclick="changeQty('bg-cheese-d', -1, 6000, 'Cheese Burger Doble')">-</button>
+                                <span class="qty-value" id="bg-cheese-d">0</span>
+                                <button class="btn-qty" onclick="changeQty('bg-cheese-d', 1, 6000, 'Cheese Burger Doble')">+</button>
                             </span>
                         </div>
                     </div>
@@ -603,17 +583,17 @@
                         <div>
                             <span class="option-price">$8.000</span>
                             <span class="quantity-controls" style="display:inline-flex;">
-                                <button class="btn-qty" onclick="changeQty('bg-gust-t', -1, 8000, 'Cheese Burger Triple')">-</button>
-                                <span class="qty-value" id="bg-gust-t">0</span>
-                                <button class="btn-qty" onclick="changeQty('bg-gust-t', 1, 8000, 'Cheese Burger Triple')">+</button>
+                                <button class="btn-qty" onclick="changeQty('bg-cheese-t', -1, 8000, 'Cheese Burger Triple')">-</button>
+                                <span class="qty-value" id="bg-cheese-t">0</span>
+                                <button class="btn-qty" onclick="changeQty('bg-cheese-t', 1, 8000, 'Cheese Burger Triple')">+</button>
                             </span>
                         </div>
                     </div>
                 </div>
             </div>
-      
-       
-       <div id="papas">
+        </div>
+
+        <div id="papas">
             <h2 class="section-title">🍟 Papas</h2>
             <p class="category-desc">Ideales para acompañar o compartir.</p>
 
@@ -680,7 +660,7 @@
             </div>
 
             <div class="form-group" id="address-container" style="display: none;">
-                <label>Dirección (y enviar ubicaciòn actual):</label>
+                <label>Dirección (y enviar ubicación actual):</label>
                 <input type="text" id="cust-address" class="input-text" placeholder="Ej: Barrio industrial M/B C/8">
             </div>
 
@@ -691,10 +671,12 @@
                     <option value="Efectivo">Efectivo</option>
                 </select>
             </div>
+
             <div class="form-group" id="cash-container" style="display: none;">
                 <label>¿Con cuánto abonás?</label>
                 <input type="text" id="cust-cash-detail" class="input-text" placeholder="Ej: Pago con $10.000 / Pago Justo">
             </div>
+
             <div class="form-group">
                 <label>Aclaraciones especiales:</label>
                 <input type="text" id="cust-notes" class="input-text" placeholder="Ej: Sin cebolla / sin algun aderezo / sin verdura">
@@ -724,164 +706,163 @@
         Pedidos Directos por WhatsApp
     </footer>
 
-  <script>
-    let cart = {};
-    let totalAmount = 0;
-    let deliveryType = "Retiro por el local"; 
-    const deliveryCost = 2500;
+    <script>
+        let cart = {};
+        let totalAmount = 0;
+        let deliveryType = "Retiro por el local"; 
+        const deliveryCost = 2500;
 
-    function changeQty(id, delta, price, name) {
-        if (!cart[id]) {
-            cart[id] = { quantity: 0, price: price, name: name };
-        }
-        cart[id].quantity += delta;
-        if (cart[id].quantity <= 0) {
-            delete cart[id];
-            document.getElementById(id).innerText = 0;
-        } else {
-            document.getElementById(id).innerText = cart[id].quantity;
-        }
-        calculateTotal();
-    }
-
-    function setDeliveryType(type) {
-                
-        deliveryType = type; 
-        document.getElementById('tile-delivery').classList.remove('selected');
-        document.getElementById('tile-pickup').classList.remove('selected');
-
-        if (type === 'Envío a domicilio') {
-            document.getElementById('tile-delivery').classList.add('selected');
-            document.getElementById('address-container').style.display = 'block';
-        } else {
-            document.getElementById('tile-pickup').classList.add('selected');
-            document.getElementById('address-container').style.display = 'none';
-        }
-        calculateTotal();
-    }
-
-    function calculateTotal() {
-        let subtotal = 0;
-        for (const key in cart) {
-            subtotal += cart[key].price * cart[key].quantity;
-        }
-        
-        if (deliveryType === 'Envío a domicilio' && subtotal > 0) {
-            totalAmount = subtotal + deliveryCost;
-        } else {
-            totalAmount = subtotal;
-        }
-        document.getElementById('total-price').innerText = '$' + totalAmount.toLocaleString('es-AR');
-    }
-
-    window.addEventListener('scroll', () => {
-        // MODIFICADO: Lista de secciones actualizada sin lomos
-        const sections = ['burgers', 'pachatas', 'papas'];
-        sections.forEach(sec => {
-            const el = document.getElementById(sec);
-            if (el) {
-                const rect = el.getBoundingClientRect();
-                if(rect.top >= -50 && rect.top <= 300) {
-                    document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
-                    document.getElementById('tab-' + sec).classList.add('active');
-                }
+        function changeQty(id, delta, price, name) {
+            if (!cart[id]) {
+                cart[id] = { quantity: 0, price: price, name: name };
             }
-        });
-    });
-
-    document.querySelectorAll('.category-tab').forEach(tab => {
-        tab.addEventListener('click', (e) => {
-            document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
-            e.target.classList.add('active');
-        });
-    });
-
-    function sendOrder() {
-        let itemLines = "";
-        let itemCount = 0;
-        let subtotal = 0;
-
-        for (const key in cart) {
-            const item = cart[key];
-            itemLines += `- ${item.quantity}x ${item.name} ($${(item.price * item.quantity).toLocaleString('es-AR')})\n`;
-            itemCount += item.quantity;
-            subtotal += item.price * item.quantity;
-        }
-
-        if (itemCount === 0) {
-            alert("Por favor, agregá al menos un producto a tu carrito.");
-            return;
-        }
-
-        const name = document.getElementById('cust-name').value.trim();
-        const address = document.getElementById('cust-address').value.trim();
-        const payment = document.getElementById('cust-payment').value;
-        const notes = document.getElementById('cust-notes').value.trim();
-        const cashDetail = document.getElementById('cust-cash-detail').value.trim();
-        
-        if (!name) {
-            alert("Por favor, ingresá tu nombre.");
-            return;
-        }
-        if (deliveryType === 'Envío a domicilio' && !address) {
-            alert("Por favor, ingresá tu dirección.");
-            return;
-        }
-
-        let message = `*NUEVO PEDIDO - PA' LOS GUSTOS*\n\n`;
-        message += `👤 *Cliente:* ${name}\n`;
-        message += `🛵 *Entrega:* ${deliveryType}\n`;
-        
-        if (deliveryType === 'Envío a domicilio') {
-            message += `📍 *Dirección:* ${address}\n`;
-        }
-        message += `💳 *Pago:* ${payment}\n`;
-        
-        if (payment === 'Efectivo' && cashDetail) {
-            message += `💵 *Abona con:* ${cashDetail}\n`;
-        }    
-        
-        if (notes) {
-            message += `\n🚨🚨🚨 *¡ATENCIÓN COCINA!* 🚨🚨🚨\n`;
-            message += `⚠️⚠️ *OBSERVACIÓN DE PRODUCTO:* ⚠️⚠️\n`;
-            message += `👉 *${notes.toUpperCase()}*\n`;
-            message += `━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
-        }
-        
-        message += `\n🛒 *Detalle:*\n${itemLines}\n`;
-        
-        if (deliveryType === 'Envío a domicilio') {
-            message += `Subtotal: $${subtotal.toLocaleString('es-AR')}\n`;
-            message += `Delivery: $${deliveryCost.toLocaleString('es-AR')}\n`;
-        }
-        message += `💰 *TOTAL: $${totalAmount.toLocaleString('es-AR')}*\n\n`;
-        
-        if (payment.includes("Transferencia")) {
-            message += `🏦 *DATOS PARA TRANSFERENCIA:*\n`;
-            message += `• Alias: *palosgustos.mp*\n`;
-            message += `• Titular: *Leonardo Samuel Montaña Maya*\n\n`;
-            message += `⚠️ _Recordá enviar el comprobante de transferencia._\n`;
-        }
-
-        const phoneNumber = "5492644710376"; 
-        window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
-    }
-
-document.addEventListener('DOMContentLoaded', () => {
-    const paymentSelect = document.getElementById('cust-payment');
-    const cashContainer = document.getElementById('cash-container');
-    
-    if (paymentSelect && cashContainer) {
-        paymentSelect.addEventListener('change', () => {
-            if (paymentSelect.value === 'Efectivo') {
-                cashContainer.style.display = 'block';
+            cart[id].quantity += delta;
+            if (cart[id].quantity <= 0) {
+                delete cart[id];
+                document.getElementById(id).innerText = 0;
             } else {
-                cashContainer.style.display = 'none';
-                document.getElementById('cust-cash-detail').value = '';
+                document.getElementById(id).innerText = cart[id].quantity;
+            }
+            calculateTotal();
+        }
+
+        function setDeliveryType(type) {
+            deliveryType = type; 
+            document.getElementById('tile-delivery').classList.remove('selected');
+            document.getElementById('tile-pickup').classList.remove('selected');
+
+            if (type === 'Envío a domicilio') {
+                document.getElementById('tile-delivery').classList.add('selected');
+                document.getElementById('address-container').style.display = 'block';
+            } else {
+                document.getElementById('tile-pickup').classList.add('selected');
+                document.getElementById('address-container').style.display = 'none';
+            }
+            calculateTotal();
+        }
+
+        function calculateTotal() {
+            let subtotal = 0;
+            for (const key in cart) {
+                subtotal += cart[key].price * cart[key].quantity;
+            }
+            
+            if (deliveryType === 'Envío a domicilio' && subtotal > 0) {
+                totalAmount = subtotal + deliveryCost;
+            } else {
+                totalAmount = subtotal;
+            }
+            document.getElementById('total-price').innerText = '$' + totalAmount.toLocaleString('es-AR');
+        }
+
+        window.addEventListener('scroll', () => {
+            const sections = ['burgers', 'papas'];
+            sections.forEach(sec => {
+                const el = document.getElementById(sec);
+                if (el) {
+                    const rect = el.getBoundingClientRect();
+                    if(rect.top >= -50 && rect.top <= 300) {
+                        document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+                        const currentTab = document.getElementById('tab-' + sec);
+                        if (currentTab) currentTab.classList.add('active');
+                    }
+                }
+            });
+        });
+
+        document.querySelectorAll('.category-tab').forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+                e.target.classList.add('active');
+            });
+        });
+
+        function sendOrder() {
+            let itemLines = "";
+            let itemCount = 0;
+            let subtotal = 0;
+
+            for (const key in cart) {
+                const item = cart[key];
+                itemLines += `- ${item.quantity}x ${item.name} ($${(item.price * item.quantity).toLocaleString('es-AR')})\n`;
+                itemCount += item.quantity;
+                subtotal += item.price * item.quantity;
+            }
+
+            if (itemCount === 0) {
+                alert("Por favor, agregá al menos un producto a tu carrito.");
+                return;
+            }
+
+            const name = document.getElementById('cust-name').value.trim();
+            const address = document.getElementById('cust-address').value.trim();
+            const payment = document.getElementById('cust-payment').value;
+            const notes = document.getElementById('cust-notes').value.trim();
+            const cashDetail = document.getElementById('cust-cash-detail').value.trim();
+            
+            if (!name) {
+                alert("Por favor, ingresá tu nombre.");
+                return;
+            }
+            if (deliveryType === 'Envío a domicilio' && !address) {
+                alert("Por favor, ingresá tu dirección.");
+                return;
+            }
+
+            let message = `*NUEVO PEDIDO - PA' LOS GUSTOS*\n\n`;
+            message += `👤 *Cliente:* ${name}\n`;
+            message += `🛵 *Entrega:* ${deliveryType}\n`;
+            
+            if (deliveryType === 'Envío a domicilio') {
+                message += `📍 *Dirección:* ${address}\n`;
+            }
+            message += `💳 *Pago:* ${payment}\n`;
+            
+            if (payment === 'Efectivo' && cashDetail) {
+                message += `💵 *Abona con:* ${cashDetail}\n`;
+            }    
+            
+            if (notes) {
+                message += `\n🚨🚨🚨 *¡ATENCIÓN COCINA!* 🚨🚨🚨\n`;
+                message += `⚠️⚠️ *OBSERVACIÓN DE PRODUCTO:* ⚠️⚠️\n`;
+                message += `👉 *${notes.toUpperCase()}*\n`;
+                message += `━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+            }
+            
+            message += `\n🛒 *Detalle:*\n${itemLines}\n`;
+            
+            if (deliveryType === 'Envío a domicilio') {
+                message += `Subtotal: $${subtotal.toLocaleString('es-AR')}\n`;
+                message += `Delivery: $${deliveryCost.toLocaleString('es-AR')}\n`;
+            }
+            message += `💰 *TOTAL: $${totalAmount.toLocaleString('es-AR')}*\n\n`;
+            
+            if (payment.includes("Transferencia")) {
+                message += `🏦 *DATOS PARA TRANSFERENCIA:*\n`;
+                message += `• Alias: *palosgustos.mp*\n`;
+                message += `• Titular: *Leonardo Samuel Montaña Maya*\n\n`;
+                message += `⚠️ _Recordá enviar el comprobante de transferencia._\n`;
+            }
+
+            const phoneNumber = "5492644710376"; 
+            window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const paymentSelect = document.getElementById('cust-payment');
+            const cashContainer = document.getElementById('cash-container');
+            
+            if (paymentSelect && cashContainer) {
+                paymentSelect.addEventListener('change', () => {
+                    if (paymentSelect.value === 'Efectivo') {
+                        cashContainer.style.display = 'block';
+                    } else {
+                        cashContainer.style.display = 'none';
+                        document.getElementById('cust-cash-detail').value = '';
+                    }
+                });
             }
         });
-    }
-});
-</script>
+    </script>
 </body>
 </html>
