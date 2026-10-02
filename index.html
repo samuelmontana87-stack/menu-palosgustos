@@ -407,6 +407,47 @@
             <p class="category-desc">Pan de papa con parmesano de 15cm en todas las variedades. Envoltorio térmico.</p>
 
             <div class="product-card">
+                <img src="cheeseburger.png" alt="Cheese Burger">
+                <div class="product-name">Cheese Burger</div>
+                <p class="product-desc">Pan de Papa + Medallón de Carne de 180g + Q. Cheddar + Ketchup + Mostaza.</p>
+                <div class="options-container">
+                    <div class="option-row">
+                        <span class="option-label">Simple</span>
+                        <div>
+                            <span class="option-price">$4.900</span>
+                            <span class="quantity-controls" style="display:inline-flex;">
+                                <button class="btn-qty" onclick="changeQty('bg-cheese-s', -1, 4900, 'Cheese Burger Simple')">-</button>
+                                <span class="qty-value" id="bg-cheese-s">0</span>
+                                <button class="btn-qty" onclick="changeQty('bg-cheese-s', 1, 4900, 'Cheese Burger Simple')">+</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="option-row">
+                        <span class="option-label">Doble</span>
+                        <div>
+                            <span class="option-price">$6.000</span>
+                            <span class="quantity-controls" style="display:inline-flex;">
+                                <button class="btn-qty" onclick="changeQty('bg-cheese-d', -1, 6000, 'Cheese Burger Doble')">-</button>
+                                <span class="qty-value" id="bg-cheese-d">0</span>
+                                <button class="btn-qty" onclick="changeQty('bg-cheese-d', 1, 6000, 'Cheese Burger Doble')">+</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="option-row">
+                        <span class="option-label">Triple</span>
+                        <div>
+                            <span class="option-price">$8.000</span>
+                            <span class="quantity-controls" style="display:inline-flex;">
+                                <button class="btn-qty" onclick="changeQty('bg-cheese-t', -1, 8000, 'Cheese Burger Triple')">-</button>
+                                <span class="qty-value" id="bg-cheese-t">0</span>
+                                <button class="btn-qty" onclick="changeQty('bg-cheese-t', 1, 8000, 'Cheese Burger Triple')">+</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
                 <img src="golden.png" alt="Hamburguesa Golden">
                 <div class="product-name">Golden</div>
                 <p class="product-desc">Pan de Papa + Barbacoa + Medallón de Carne de 180g + Cheddar + Panceta + Huevo.</p>
